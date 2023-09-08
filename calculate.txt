@@ -1,0 +1,34 @@
+b=input("Введите знак: ")
+a=float(input("Введите число: "))
+c=float(input("Введите число: "))
+while b!='стоп':
+    if b=='+':
+        print(a+c)
+        
+    if b=='-':
+        print(a-c)
+        break
+    if b=='**':
+        print(a**c)
+        break
+    if b=='*':
+        print(a*c)
+        break
+    if b=='/' and c==0:
+        print("На ноль делить нельзя!")
+        break
+    elif b=='/' and c!=0:
+        print(a/c)
+        break
+    if b=='//' and c==0:
+        print("На ноль делить нельзя!")
+        break
+    elif b=='//' and c!=0:
+        print(a//c)
+        break
+    if b=='%' and c==0:
+        print("На ноль делить нельзя!")
+        break
+    elif b=='%' and c!=0:
+        print(a%c)
+        break

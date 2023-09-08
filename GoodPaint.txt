@@ -1,0 +1,73 @@
+from turtle import*
+
+t=Turtle()
+t.color('purple')
+t.width(0)
+t.shape('circle')
+t.pendown()
+t.i=0
+b=0
+er=0
+
+
+def draw(x,y):
+  t.goto(x,y)
+
+def move(x,y):
+  t.penup()
+  t.goto(x,y)
+  t.pendown()
+
+
+def stepspace():
+  c=['red','white','green','cyan','gray','pink','purple','black','yellow','orange','blue','gold','coral','lime','navy','indigo','darkred']
+  t.color(c[t.i])
+  t.i=t.i+1
+  if t.i==17 :
+     t.i=0
+  
+def stepRight():
+  t.goto(t.xcor() +5, t.ycor())
+def stepUp():
+  t.goto(t.xcor(), t.ycor() +5) 
+def stepDown():
+  t.goto(t.xcor(), t.ycor() -5)
+def stepLeft():
+  t.goto(t.xcor() -5, t.ycor())
+  
+def background():
+  global b
+  f=['red','white','green','cyan','gray','pink','purple','black','yellow','orange','blue','silver','grey','lightgray','tan']
+  scr.bgcolor(f[b])
+  b=b+1
+  if b==15:
+    b=0
+  
+def sizea():
+  global er
+  t.width(er)
+  er=er+1
+  
+def sizef():
+  global er
+  t.width(er)
+  er=er-1
+  
+t.ondrag(draw)
+
+scr=t.getscreen()
+
+scr.onkey(stepRight,'Right')
+scr.onkey(stepUp,'Up')
+scr.onkey(stepDown,'Down')
+scr.onkey(stepLeft,'Left')
+
+scr.onkey(background,'0')
+
+scr.onkey(sizea,'S')
+scr.onkey(sizef,'A')
+
+scr.onscreenclick(move)
+scr.onkey(stepspace,'Space')
+
+scr.listen()

@@ -1,0 +1,362 @@
+from turtle import*
+from time import sleep
+from random import randint
+
+s_width = 200
+s_height = 180
+
+speed(100)
+
+class Sprite(Turtle):
+  def __init__(self, x, y, color, shape):
+      Turtle.__init__(self)
+      self.penup()
+      self.goto(x,y)
+      self.color(color)
+      self.shape(shape)
+      self.left(180)
+      self.step=10
+      self.points=0
+  
+  def stepUp(self):
+      self.goto(self.xcor(), self.ycor() +self.step) 
+  def stepDown(self):
+      self.goto(self.xcor(), self.ycor()-self.step) 
+  def stepLeft(self):
+      self.goto(self.xcor()-self.step, self.ycor()) 
+  def stepRight(self):
+      self.goto(self.xcor()+self.step, self.ycor()) 
+  
+  def is_collide(self, sprite):
+    dist = self.distance(sprite.xcor(),sprite.ycor())
+    if dist < 20:
+        return True
+    else:
+        return False
+      
+class Enemy(Sprite):
+    def __init__(self, x, y, shape, color):
+        Sprite.__init__(self, x, y, shape, color)
+        self.goto(x, y)
+        self.color(color)
+        self.shape(shape)
+        self.step=20
+        self.speed(10)
+    def move(self, x_start, y_start, x_end, y_end):
+        self.x_start = x_start
+        self.y_start = y_start
+        self.x_end = x_end
+        self.y_end = y_end
+        self.goto(x_start, y_start)
+        self.step=20
+        self.setheading(self.towards(x_end, y_end))
+    def make_step(self):
+        self.forward(self.step)
+        if self.distance(self.x_end, self.y_end) < self.step:
+            self.move(self.x_end, self.y_end, self.x_start, self.y_start)
+            
+class Wall(Sprite):
+  def __init__(self, x, y, shape, color):
+        Sprite.__init__(self, x, y, shape, color)
+        self.goto(x, y)
+        self.color(color)
+        self.shape(shape)
+
+    
+player=Sprite(-50,180,'green','turtle')
+turtl=Sprite(-170,-185,'gold','turtle')
+tur=Sprite(-170,180,'gold','turtle')
+Hahr=Sprite(170,180,'gold','turtle')
+
+enemy1 = Enemy(s_width, -120, 'triangle', 'red')
+enemy1.move(s_width, -120, -s_width, -120)
+enemy2 = Enemy(-s_width, 53, 'triangle', 'red')
+enemy2.move(-s_width, 53, s_width, 53)
+enemy3 = Enemy(0, s_height, 'triangle', 'red')
+enemy3.move(0, s_height, -10, -s_height)
+
+
+wall=Turtle()
+wall.speed(2)
+wall.hideturtle()
+wall.penup()
+wall.color('purple')
+wall.pensize(1)
+
+wall.goto(-200,25)
+wall.pendown()
+wall.begin_fill()
+wall.goto(-85,25)
+wall.goto(-85,10)
+wall.goto(-50,10)
+wall.goto(-50,-95)
+wall.goto(-200,-95)
+wall.goto(-200,25)
+wall.end_fill()
+wall.penup()
+
+wall.goto(-200,120)
+wall.pendown()
+wall.begin_fill()
+wall.goto(-80,120)
+wall.goto(-80,70)
+wall.goto(-200,70)
+wall.goto(-200,120)
+wall.end_fill()
+
+
+wall.penup()
+wall.goto(-70,-165)
+wall.pendown()
+wall.begin_fill()
+wall.goto(-70,-200)
+wall.goto(-50,-200)
+wall.goto(-50,-165)
+wall.goto(-70,-165)
+wall.end_fill()
+
+wall.penup()
+wall.goto(180,-170)
+wall.pendown()
+wall.begin_fill()
+wall.goto(10,-170)
+wall.goto(10,-145)
+wall.goto(180,-145)
+wall.goto(180,-170)
+wall.end_fill()
+
+wall.penup()
+wall.goto(10,-95)
+wall.pendown()
+wall.begin_fill()
+wall.goto(10,10)
+wall.goto(175,10)
+wall.goto(175,-95)
+wall.goto(10,-95)
+wall.end_fill()
+
+wall.penup()
+wall.goto(20,200)
+wall.pendown()
+wall.begin_fill()
+wall.goto(150,200)
+wall.goto(150,70)
+wall.goto(100,70)
+wall.goto(100,150)
+wall.goto(20,150)
+wall.goto(20,200)
+wall.end_fill()
+
+
+
+wall1=Wall(-200,-150,'square','purple')
+wall2=Wall(-185,-150,'square','purple')
+wall3=Wall(-170,-150,'square','purple')
+wall4=Wall(-155,-150,'square','purple')
+wall5=Wall(-140,-150,'square','purple')
+wall6=Wall(-125,-150,'square','purple')
+wall7=Wall(-110,-150,'square','purple')
+wall8=Wall(-200,-165,'square','purple')
+wall9=Wall(-185,-165,'square','purple')
+wall10=Wall(-170,-165,'square','purple')
+wall11=Wall(-155,-165,'square','purple')
+wall12=Wall(-140,-165,'square','purple')
+wall13=Wall(-125,-165,'square','purple')
+wall14=Wall(-110,-165,'square','purple')
+
+wall15=Wall(-80,10,'square','purple')
+
+wall16=Wall(-65,10,'square','purple')
+wall17=Wall(-50,10,'square','purple')
+
+wall18=Wall(-50,-5,'square','purple')
+
+wall19=Wall(-50,-20,'square','purple')
+
+wall20=Wall(-50,-35,'square','purple')
+wall21=Wall(-50,-50,'square','purple')
+wall22=Wall(-50,-65,'square','purple')
+wall23=Wall(-50,-80,'square','purple')
+wall24=Wall(-50,-95,'square','purple')
+
+wall25=Wall(-200,25,'square','purple')
+wall26=Wall(-185,25,'square','purple')    
+wall27=Wall(-170,25,'square','purple')    
+wall28=Wall(-155,25,'square','purple')
+wall29=Wall(-140,25,'square','purple')
+wall30=Wall(-125,25,'square','purple')
+wall31=Wall(-110,25,'square','purple')
+wall32=Wall(-95,25,'square','purple')
+wall33=Wall(-80,25,'square','purple')
+
+wall25=Wall(-200,-95,'square','purple')
+wall26=Wall(-185,-95,'square','purple')    
+wall27=Wall(-170,-95,'square','purple')    
+wall28=Wall(-155,-95,'square','purple')
+wall29=Wall(-140,-95,'square','purple')
+wall30=Wall(-125,-95,'square','purple')
+wall31=Wall(-110,-95,'square','purple')
+wall32=Wall(-95,-95,'square','purple')
+wall33=Wall(-80,-95,'square','purple')
+wall34=Wall(-65,-95,'square','purple')
+
+wall35=Wall(10,-95,'square','purple')
+wall36=Wall(25,-95,'square','purple')    
+wall37=Wall(40,-95,'square','purple')    
+wall38=Wall(55,-95,'square','purple')
+wall39=Wall(70,-95,'square','purple')
+wall40=Wall(85,-95,'square','purple')
+wall41=Wall(100,-95,'square','purple')
+wall42=Wall(115,-95,'square','purple')
+wall43=Wall(130,-95,'square','purple')
+wall44=Wall(145,-95,'square','purple')
+wall45=Wall(160,-95,'square','purple')
+wall46=Wall(175,-95,'square','purple')
+
+wall47=Wall(10,10,'square','purple')
+wall48=Wall(25,10,'square','purple')    
+wall49=Wall(40,10,'square','purple')    
+wall50=Wall(55,10,'square','purple')
+wall51=Wall(70,10,'square','purple')
+wall52=Wall(85,10,'square','purple')
+wall53=Wall(100,10,'square','purple')
+wall54=Wall(115,10,'square','purple')
+wall55=Wall(130,10,'square','purple')
+wall56=Wall(145,10,'square','purple')
+wall57=Wall(160,10,'square','purple')
+wall58=Wall(175,10,'square','purple')
+
+wall59=Wall(10,-80,'square','purple')
+wall60=Wall(10,-65,'square','purple')
+wall61=Wall(10,-50,'square','purple')
+wall62=Wall(10,-35,'square','purple')
+wall63=Wall(10,-20,'square','purple')
+wall64=Wall(10,-5,'square','purple')
+
+wall65=Wall(175,-80,'square','purple')
+wall66=Wall(175,-65,'square','purple')
+wall67=Wall(175,-50,'square','purple')
+wall68=Wall(175,-35,'square','purple')
+wall69=Wall(175,-20,'square','purple')
+wall70=Wall(175,-5,'square','purple')
+
+wall71=Wall(-70,-170,'square','purple')
+wall72=Wall(-55,-170,'square','purple')
+wall73=Wall(-55,-185,'square','purple')
+wall74=Wall(-70,-185,'square','purple')
+wall75=Wall(-70,-200,'square','purple')
+wall76=Wall(-55,-200,'square','purple')
+
+wall77=Wall(10,-145,'square','purple')
+wall78=Wall(25,-145,'square','purple')    
+wall79=Wall(40,-145,'square','purple')    
+wall80=Wall(55,-145,'square','purple')
+wall81=Wall(70,-145,'square','purple')
+wall82=Wall(85,-145,'square','purple')
+wall83=Wall(100,-145,'square','purple')
+wall84=Wall(115,-145,'square','purple')
+wall85=Wall(130,-145,'square','purple')
+wall86=Wall(145,-145,'square','purple')
+wall87=Wall(160,-145,'square','purple')
+wall88=Wall(175,-145,'square','purple')
+
+wall89=Wall(10,-160,'square','purple')
+wall90=Wall(175,-160,'square','purple')
+wall91=Wall(10,-175,'square','purple')
+wall92=Wall(25,-175,'square','purple')    
+wall93=Wall(40,-175,'square','purple')    
+wall94=Wall(55,-175,'square','purple')
+wall95=Wall(70,-175,'square','purple')
+wall96=Wall(85,-175,'square','purple')
+wall97=Wall(100,-175,'square','purple')
+wall98=Wall(115,-175,'square','purple')
+wall99=Wall(130,-175,'square','purple')
+wall00=Wall(145,-175,'square','purple')
+wall01=Wall(160,-175,'square','purple')
+wall02=Wall(175,-175,'square','purple')
+
+wall03=Wall(-200,120,'square','purple')
+wall04=Wall(-185,120,'square','purple')    
+wall05=Wall(-170,120,'square','purple')    
+wall06=Wall(-155,120,'square','purple')
+wall07=Wall(-140,120,'square','purple')
+wall08=Wall(-125,120,'square','purple')
+wall09=Wall(-110,120,'square','purple')
+wall011=Wall(-95,120,'square','purple')
+wall012=Wall(-80,120,'square','purple')
+
+wall013=Wall(-80,105,'square','purple')
+
+
+wall014=Wall(-200,75,'square','purple')
+wall015=Wall(-185,75,'square','purple')    
+wall016=Wall(-170,75,'square','purple')    
+wall017=Wall(-155,75,'square','purple')
+wall018=Wall(-140,75,'square','purple')
+wall019=Wall(-125,75,'square','purple')
+wall020=Wall(-110,75,'square','purple')
+wall021=Wall(-95,75,'square','purple')
+wall022=Wall(-80,75,'square','purple')
+
+wall023=Wall(-80,90,'square','purple')
+
+wall024=Wall(100,75,'square','purple')
+wall025=Wall(115,75,'square','purple')
+wall026=Wall(130,75,'square','purple')
+wall027=Wall(145,75,'square','purple')
+wall028=Wall(160,75,'square','purple')
+
+wall029=Wall(100,90,'square','purple')
+wall030=Wall(100,105,'square','purple')
+wall031=Wall(100,120,'square','purple')
+wall032=Wall(100,135,'square','purple')
+wall033=Wall(100,150,'square','purple')
+
+wall034=Wall(160,90,'square','purple')
+wall035=Wall(160,105,'square','purple')
+wall036=Wall(160,120,'square','purple')
+wall037=Wall(160,135,'square','purple')
+wall038=Wall(160,150,'square','purple')
+wall039=Wall(160,165,'square','purple')
+wall040=Wall(160,180,'square','purple')
+wall041=Wall(160,195,'square','purple')
+
+wall042=Wall(85,150,'square','purple')
+wall043=Wall(70,150,'square','purple')
+wall044=Wall(55,150,'square','purple')
+wall045=Wall(40,150,'square','purple')
+wall046=Wall(25,150,'square','purple')
+
+wall047=Wall(25,150,'square','purple')
+wall048=Wall(25,165,'square','purple')
+wall049=Wall(25,180,'square','purple')
+wall050=Wall(25,195,'square','purple')
+
+
+r=getscreen() #экран задний типа
+r.bgcolor('violet')
+scr=player.getscreen()
+
+scr.onkey(player.stepRight,'Right')
+scr.onkey(player.stepUp,'Up')
+scr.onkey(player.stepDown,'Down')
+scr.onkey(player.stepLeft,'Left')
+
+scr.listen()
+       
+score=0 #если игрок попадёт во врага, то стоп, а если в черепаху то будет победа
+while score < 1:
+    enemy1.make_step()
+    enemy2.make_step()
+    enemy3.make_step()
+    if player.is_collide(turtl):
+        score += 1
+    if player.is_collide(enemy1) or player.is_collide(enemy2) or player.is_collide(enemy3) or player.is_collide(wall1) or player.is_collide(wall12) or player.is_collide(wall3) or player.is_collide(wall4) or player.is_collide(wall5) or player.is_collide(wall6) or player.is_collide(wall7) or player.is_collide(wall8) or player.is_collide(wall9) or player.is_collide(wall10) or player.is_collide(wall11) or player.is_collide(wall12) or player.is_collide(wall13) or player.is_collide(wall14) or player.is_collide(wall15) or player.is_collide(wall16) or player.is_collide(wall17) or player.is_collide(wall18) or player.is_collide(wall19) or player.is_collide(wall20) or player.is_collide(wall21) or player.is_collide(wall22) or player.is_collide(wall23) or player.is_collide(wall24) or player.is_collide(wall25) or player.is_collide(wall26) or player.is_collide(wall27) or player.is_collide(wall28) or player.is_collide(wall29) or player.is_collide(wall30) or player.is_collide(wall31) or player.is_collide(wall32) or player.is_collide(wall33) or player.is_collide(wall34) or player.is_collide(wall35) or player.is_collide(wall36) or player.is_collide(wall37) or player.is_collide(wall38) or player.is_collide(wall39) or player.is_collide(wall40) or player.is_collide(wall41) or player.is_collide(wall42) or player.is_collide(wall43) or player.is_collide(wall44) or player.is_collide(wall45) or player.is_collide(wall46) or player.is_collide(wall47) or player.is_collide(wall48) or player.is_collide(wall49) or player.is_collide(wall50) or player.is_collide(wall51) or player.is_collide(wall52) or player.is_collide(wall53) or player.is_collide(wall54) or player.is_collide(wall55) or player.is_collide(wall56) or player.is_collide(wall57) or player.is_collide(wall58) or player.is_collide(wall59) or player.is_collide(wall60) or player.is_collide(wall61) or player.is_collide(wall62) or player.is_collide(wall63) or player.is_collide(wall64) or player.is_collide(wall65) or player.is_collide(wall66) or player.is_collide(wall67) or player.is_collide(wall68) or player.is_collide(wall69) or player.is_collide(wall70) or player.is_collide(wall71) or player.is_collide(wall72) or player.is_collide(wall73) or player.is_collide(wall74) or player.is_collide(wall75) or player.is_collide(wall76) or player.is_collide(wall77) or player.is_collide(wall78) or player.is_collide(wall79) or player.is_collide(wall80) or player.is_collide(wall81) or player.is_collide(wall82) or player.is_collide(wall83) or player.is_collide(wall84) or player.is_collide(wall85) or player.is_collide(wall86) or player.is_collide(wall87) or player.is_collide(wall88) or player.is_collide(wall89) or player.is_collide(wall90) or player.is_collide(wall91) or player.is_collide(wall92) or player.is_collide(wall93) or player.is_collide(wall94) or player.is_collide(wall95) or player.is_collide(wall96) or player.is_collide(wall97) or player.is_collide(wall98) or player.is_collide(wall99) or player.is_collide(wall00) or player.is_collide(wall01) or player.is_collide(wall02) or player.is_collide(wall03) or player.is_collide(wall04) or player.is_collide(wall05) or player.is_collide(wall06) or player.is_collide(wall07) or player.is_collide(wall08) or player.is_collide(wall09) or player.is_collide(wall011) or player.is_collide(wall012) or player.is_collide(wall013) or player.is_collide(wall014) or player.is_collide(wall015) or player.is_collide(wall016) or player.is_collide(wall017) or player.is_collide(wall018) or player.is_collide(wall019) or player.is_collide(wall020) or player.is_collide(wall021) or player.is_collide(wall022)  or player.is_collide(wall023) or player.is_collide(wall024) or player.is_collide(wall025) or player.is_collide(wall026) or player.is_collide(wall027) or player.is_collide(wall028) or player.is_collide(wall029) or player.is_collide(wall030) or player.is_collide(wall031) or player.is_collide(wall032) or player.is_collide(wall033) or player.is_collide(wall034) or player.is_collide(wall035) or player.is_collide(wall036) or player.is_collide(wall037)  or player.is_collide(wall038) or player.is_collide(wall039) or player.is_collide(wall040) or player.is_collide(wall041) or player.is_collide(wall042) or player.is_collide(wall043)or player.is_collide(wall044)or player.is_collide(wall045)or player.is_collide(wall046)or player.is_collide(wall047)or player.is_collide(wall048)or player.is_collide(wall049)or player.is_collide(wall050):
+        turtl.hideturtle()
+        player.hideturtle()
+        break
+if score == 1:
+    turtl.hideturtle()
+    enemy1.hideturtle()
+    enemy2.hideturtle()
+    enemy3.hideturtle()                                     

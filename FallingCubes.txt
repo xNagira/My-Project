@@ -1,0 +1,53 @@
+from turtle import *
+from random import randint
+from time import sleep
+
+hideturtle()
+penup()
+goto(-150,-150)
+pendown()
+forward(300)
+penup()
+
+t = Turtle()
+t.color('teal')
+t.penup()
+t.shape('square')
+t.right(90)
+
+t1 = Turtle()
+t1.color('purple')
+t1.penup()
+t1.shape('square')
+t1.right(90)
+
+def h():
+  t.hideturtle()
+  t1.hideturtle()
+  t.goto(randint(-150,150),randint(0,160))
+  t1.goto(randint(-150,150),randint(0,170))
+  t.showturtle()
+  t1.showturtle()
+  play()
+  
+def play():
+  while t.ycor()>-140 and t1.ycor()>-140:
+    t.speed(randint(2,8))
+    t.fd(10)
+    sleep(1)
+    t1.speed(randint(2,8))
+    t1.fd(10)
+    sleep(1)
+  else:
+    t.write('Проигрыш!')
+    t.hideturtle()
+    t1.hideturtle()
+    
+def catch(x,y):
+    h()
+def catch1(x,y):
+    h()
+    
+t.onclick(catch)
+t1.onclick(catch1)
+h()

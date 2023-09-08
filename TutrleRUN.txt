@@ -1,0 +1,93 @@
+from turtle import*
+from random import randint
+from time import sleep
+
+def wall():
+  pensize(5)
+  penup()
+  goto(170,130)
+  color('red')
+  pendown()
+  goto(170,-150)
+  penup()
+  goto(-170,130)
+  color('red')
+  pendown()
+  goto(-170,-150)
+  penup()
+  hideturtle()
+  
+def winner(t):
+  print("функция")
+  t.showturtle()
+  t.speed(15)
+  t.goto(-20,50)
+  t.write('Win', font=('Arial', 16, 'bold'))
+  t.goto(30,60)
+  t.stamp()
+  t.penup()
+  t.goto(0,-60)
+  for i in range(20):
+    t.fd(30)
+    t.stamp()
+    t.left(360/20)
+  t.goto(-40,0)
+  t.pendown()
+  t.color('yellow')
+  for i in range (3):
+    t.begin_fill()
+    for i in range (5):
+      t.fd(30)
+      t.left(144)
+    t.end_fill()  
+    t.penup()
+    t.fd(40)
+    t.pendown()
+
+class Turtly(Turtle):
+  def __init__(self, x, y, color, shape):
+      Turtle.__init__(self)
+      self.penup()
+      self.goto(x,y)
+      self.color(color)
+      self.shape(shape)
+
+   
+wall()   
+scr=getscreen()
+scr.bgcolor('palegoldenrod')
+
+t1=Turtly(-180,0,'green','turtle')
+t2=Turtly(-180,30,'blue','turtle')
+t3=Turtly(-180,-30,'darkred','turtle')
+t4=Turtly(-180,-60,'purple','turtle')
+
+sleep(1.5)
+
+while t1.xcor()<173 and t2.xcor()<173 and t3.xcor()<173 and t4.xcor()<173:
+  t1.forward(randint(1,10))
+  t2.forward(randint(1,10))
+  t3.forward(randint(1,10))
+  t4.forward(randint(1,10))
+
+sleep(1)
+
+maxx=max(t1.xcor(),t2.xcor(),t3.xcor(),t4.xcor())
+
+print(maxx)
+if t1.xcor()==maxx:
+  print(1)
+  scr.clear()
+  winner(t1)
+if t2.xcor()==maxx:
+  print(2)
+  scr.clear()
+  winner(t2)
+if t3.xcor()==maxx:
+  print(3)
+  scr.clear()
+  winner(t3)
+if t4.xcor()==maxx:
+  print(4)
+  scr.clear()
+  winner(t4)

@@ -1,0 +1,48 @@
+from turtle import*
+
+t=Turtle()
+t.color('light purple')
+t.width(5)
+t.shape('circle')
+t.pendown()
+t.i=0
+
+
+def draw(x,y):
+  t.goto(x,y)
+
+def move(x,y):
+  t.penup()
+  t.goto(x,y)
+  t.pendown()
+
+
+def stepspace():
+  c=['red','white','green','cyan','gray','pink','purple','black','yellow','orange','blue']
+  t.color(c[t.i])
+  t.i=t.i+1
+  if t.i==11 :
+     t.i=0
+  
+def stepRight():
+  t.goto(t.xcor() +5, t.ycor())
+def stepUp():
+  t.goto(t.xcor(), t.ycor() +5) 
+def stepDown():
+  t.goto(t.xcor(), t.ycor() -5)
+def stepLeft():
+  t.goto(t.xcor() -5, t.ycor())
+  
+t.ondrag(draw)
+
+scr=t.getscreen()
+
+scr.onkey(stepRight,'Right')
+scr.onkey(stepUp,'Up')
+scr.onkey(stepDown,'Down')
+scr.onkey(stepLeft,'Left')
+
+scr.onscreenclick(move)
+scr.onkey(stepspace,'Space')
+
+scr.listen()

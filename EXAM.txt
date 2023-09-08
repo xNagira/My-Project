@@ -1,0 +1,20 @@
+def name_class(): 
+    name=input('Имя: ') 
+    grade=int(input('Класс: '))
+    print('Приветствую тебя,',name) 
+    return grade 
+    return name 
+grade=name_class() 
+def ball(): 
+    math=int(input('Баллы по математике: ')) 
+    rus=int(input('Баллы по русскому языку: ')) 
+    info=int(input('Баллы по информатике: ')) 
+    su=math+info+rus 
+    return su 
+ball()
+def prohod1(): 
+    if (grade == 9 and su>180) or (grade == 10 and su>200) or (grade== 11 and su > 220): 
+        print('Приглашаем на награждение') 
+    else: 
+        print('Хороших каникул') 
+prohod1()

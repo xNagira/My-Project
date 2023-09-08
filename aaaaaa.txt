@@ -1,0 +1,43 @@
+people = {1: ['Иван', {'фантастика', 'комикс', 'детектив', 'роман'}], 2: ['Марина', {'комикс', 'фэнтези', 'детектив', 'комедия'}], 3: ['Тим', {'фантастика', 'ужасы', 'детектив', 'драма'}], 4: ['Никита', {'фэнтези', 'комедия', 'мистика', 'комикс'}], 5: ['Владимир', {'комикс', 'роман', 'комедия', 'драма'}]}
+def reg():
+    a=input('Введите Ваше Имя: ')
+    print('Готово')
+    b=input('Каковы ваши интересы (введите только 4): ').split()
+    b=set(b)
+    return b
+
+def find_friend(a):
+    for i in people:
+        res1=a&(set(people[i][1]))
+        res2=a.union(set(people[i][1]))
+        result=len(res1)/len(res2)*100
+        if round(result)>=15:
+            print(people[i][0], round(result))
+    menu()
+def game():
+    slovar={1:'АВЕИНОРСТ',
+      	2:'ДКЛМПУ',
+      	3:'БГЁЬЯ',
+      	4:'ЙЫ',
+      	5:'ЖЗХЦЧ',
+      	8:'ШЭЮ',
+      	10:'ФЩЪ'}
+    st=input('Слово: ').upper()
+    print(sum(k for i in st for k, v in slovar.items() if i in v))
+    a=input('1- играть ещё раз, 2- Главное меню')
+    if a=='1':
+        game()
+    elif a=='2':
+        menu()
+
+def menu():
+    vibor=input('Выбери действие: 1- Найти друга, 2- Играть, 3- Выйти')
+    if vibor=='1':
+        find_friend(mn)
+    elif vibor=='2':
+        game()
+    elif vibor=='3':
+        print('пока пока')
+
+mn=reg()
+menu()

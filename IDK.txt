@@ -1,0 +1,14 @@
+def aboba():
+    age = int(input("Возраст: "))
+    if age < 8 or age > 18:
+        print("Неподходящий возраст")
+        return
+ 
+    while True:
+        guess = input("Название: ").lower()
+        if guess == "космос":
+            print("Победа")
+            return
+        else:
+            print("Увы")
+aboba()

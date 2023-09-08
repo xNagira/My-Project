@@ -1,0 +1,39 @@
+def team():
+   nick=input("Введи название команды: ")
+   colvo=int(input("Количество учеников в команде: "))
+   while 2>colvo or colvo>8:
+        print("Недопустимое количество участников")
+        nick=input("Введи название команды: ")
+        colvo=int(input("Количество учеников в команде: "))
+   return colvo
+
+def names_of_students(colvo):
+    login=''
+    for i in range(colvo):
+        b=input('Введите имя участника: ')
+        b=b.lower()
+        f=b[0]
+        login+=f
+    print('Ваш логин -', login)
+
+def parol():
+    er="#%?@/"
+    symbl="0123456789"
+    password=input('Придумай безопасный пароль: ')
+    if len(password)<8:
+                 print('Слишком маленький пароль')
+                 parol()
+
+    for i in password:
+        if i in er:
+            print('Найден запрещенный символ -', i)
+            parol()
+
+def point(colvo):
+     balls=colvo*200
+     print("Вам начислено", balls, "баллов")
+
+colvo = team()
+names_of_students(colvo)
+parol()
+point(colvo)
